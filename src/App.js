@@ -16,6 +16,9 @@ const App = () => {
   const [descrip, setDescrip] = useState(undefined)
   const [error, setError] = useState(undefined)
   const [temp, setTemp] = useState('')
+  const [pressure, setPressure] = useState('')
+  const [wind, setWind] = useState('')
+  const [humidity, setHumidity] = useState('')
   const [feels, setFeels] = useState(undefined)
 
   useEffect(() => {
@@ -24,24 +27,28 @@ const App = () => {
       setName(data.name)
       setTemp(data.main.temp)
       setFeels(data.main.feels_like)
+      setPressure(data.main.pressure)
+      setHumidity(data.main.humidity)
       setCountry(data.sys.country)
       setIcon(data.weather[0].icon)
       setDescrip(data.weather[0].main)
+      setWind(data.wind.speed)
       setError('')
     }    
   }, [data, name]);
 
+  console.log(pressure)
   const getWeather = async (e)  => {
     e.preventDefault();
     const cityName = e.target.elements.city.value;
     try {
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKeys}&lang=ru`);
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKeys}&lang=en`);
       setData(response.data);
     } catch (error) {
       setError('Error');
     } 
   }
- 
+
   return (
     <div className="App">
       <header className="header"></header>
@@ -55,6 +62,9 @@ const App = () => {
           country={country}
           icon={icon}
           descrip={descrip}
+          wind={wind}
+          pressure={pressure}
+          humidity={humidity}
       />
      </div>
     </div>

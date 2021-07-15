@@ -1,5 +1,6 @@
 .App {
   box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
 }
 .header {
   height: 50px;
@@ -9,7 +10,7 @@
 .App-wrap {
   text-align: left;
   width: 90%;
-  padding: 10px 30px;
+  padding: 15px 35px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

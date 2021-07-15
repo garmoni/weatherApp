@@ -26,6 +26,13 @@ form {
   button:hover {
     opacity: 0.9;
   }
+  .top {
+    height: 50px;
+    background: url(../../img/temp.jpg) no-repeat;
+  }
+  .top.cold {
+    background: url(../../img/temp-cold.jpg) no-repeat;
+  }
   .form-block {
     margin-top: 20px;
   }
@@ -33,7 +40,7 @@ form {
     width: 300px;
     height: 200px;
     background-color: #fff1fe;
-    padding: 10px;
+    padding: 10px 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between
@@ -52,16 +59,32 @@ form {
   }
  .description {
    font-size: 12px;
-   color: #a1a1a1;
+   color: #C5C5C5;
    text-transform: capitalize;
+ }
+ .temp-block {
+   display: flex;
+   justify-content: space-between;
  }
  .temp-item {
    display: flex;
    align-items: flex-start;
+   width: 170px;
+   flex-wrap: wrap;
  }
  .temp-element {
   font-size: 44px;
   width: 80px;
+ }
+ .wind-block {
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.9;
+    text-align: right;
+ }
+ .wind-block span {
+   color: #459DE9;
  }
  .metric, .imperial{
    cursor: pointer;
@@ -72,6 +95,10 @@ form {
  }
  .metric.active, .imperial.active {
    color: black;
+ }
+ .feels {
+   color: #C5C5C5;
+   font-size: 13px;
  }
   ::-webkit-input-placeholder { /* WebKit browsers */
     color: #a1a1a1;
@@ -91,10 +118,10 @@ form {
   }
   .name {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
   }
   .date {
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 5px;
     font-size: 18px;
   }

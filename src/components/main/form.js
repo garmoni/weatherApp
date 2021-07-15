@@ -2,7 +2,7 @@ import { Hint } from 'react-autocomplete-hint';
 
 import './Styles.css'
 
-const options = ["Dnipro", "Kyiv", "London", "Cherkasy", "Hobart"];
+const options = ["Dnipro", "Kyiv", "London", "Cherkasy", "Hobart", "Kazan", "Moscow"];
 
 const Form = (props) => {
     return (
