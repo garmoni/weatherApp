@@ -35,15 +35,19 @@ form {
   }
   .form-block {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .form-wrap {
+    position: relative;
     width: 300px;
     height: 200px;
     background-color: #fff1fe;
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between
+    justify-content: space-between;
+    margin: 0 25px 20px 0;  
   }
   .form-header {
     display: flex;
@@ -124,4 +128,12 @@ form {
     font-weight: 400;
     margin-top: 5px;
     font-size: 18px;
+  }
+  .del {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #C5C5C5 ;
+    font-size: 12px;
+    cursor: pointer;
   }

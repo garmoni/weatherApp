@@ -4,11 +4,15 @@ import './Styles.css'
 
 const options = ["Dnipro", "Kyiv", "London", "Cherkasy", "Hobart", "Kazan", "Moscow"];
 
-const Form = (props) => {
+const Form = ({getWeather}) => {
     return (
-        <form onSubmit={props.getWeather}> 
+        <form onSubmit={getWeather}> 
             <Hint options={options}>
-                <input type='text' name='city' placeholder='City name...' />
+                <input 
+                    type='text' 
+                    name='city' 
+                    placeholder='City name...' 
+                />
             </Hint>
             <button>Add</button>
         </form>

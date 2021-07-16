@@ -1,71 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import Form from './components/main/form';
 import Weather from './components/main/weather';
-import { apiKeys } from './components/constant/constant';
+import { apiKeys, dateFormat } from './components/constant/constant';
+import moment from 'moment';
 
 import './App.css';
 
 const App = () => {
+  const date = new Date();
+  const [error, setError] = useState()
+  const [cards, setCards] = useState([])
 
-  const [data, setData] = useState(undefined)
-  const [name, setName] = useState(undefined)
-  const [country, setCountry] = useState(undefined)
-  const [icon, setIcon] = useState(undefined)
-  const [descrip, setDescrip] = useState(undefined)
-  const [error, setError] = useState(undefined)
-  const [temp, setTemp] = useState('')
-  const [pressure, setPressure] = useState('')
-  const [wind, setWind] = useState('')
-  const [humidity, setHumidity] = useState('')
-  const [feels, setFeels] = useState(undefined)
+  const addWeather = (data) => {
+    if (data) {
+      const newItem = {
+        id: Math.random().toString(15),
+        card: data,
+        date: moment(date).format(dateFormat.DATE_TIME),
+      }
+      setCards([...cards, newItem])
+    }
+  }
+  console.log(cards)
+  const removeKards = (id) =>{
+    setCards([...cards.filter((item) => item.id !== id)])
+  }
 
-  useEffect(() => {
-    if (data !== undefined){
-      setData(data)
-      setName(data.name)
-      setTemp(data.main.temp)
-      setFeels(data.main.feels_like)
-      setPressure(data.main.pressure)
-      setHumidity(data.main.humidity)
-      setCountry(data.sys.country)
-      setIcon(data.weather[0].icon)
-      setDescrip(data.weather[0].main)
-      setWind(data.wind.speed)
-      setError('')
-    }    
-  }, [data, name]);
-
-  console.log(pressure)
   const getWeather = async (e)  => {
     e.preventDefault();
     const cityName = e.target.elements.city.value;
     try {
       const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKeys}&lang=en`);
-      setData(response.data);
+      addWeather(response.data)
     } catch (error) {
       setError('Error');
     } 
+    e.target.elements.city.value = ''
   }
-
+  
   return (
     <div className="App">
       <header className="header"></header>
       <div className="App-wrap">
-      <Form getWeather={getWeather}/>
-      <Weather 
-          name={name}
-          error={error}
-          temp={temp}
-          feels={feels}
-          country={country}
-          icon={icon}
-          descrip={descrip}
-          wind={wind}
-          pressure={pressure}
-          humidity={humidity}
+      <Form 
+        getWeather={getWeather}
+
       />
+         {cards ? 
+         <div className="form-block">
+            {cards.map((item, i) => {
+              console.log(i)
+              return (
+                  <Weather 
+                    data={item.card}
+                    id={item.id}
+                    key={i}
+                    date={item.date}
+                    removeKards={removeKards}
+                />
+                
+              )
+      })}
+       </div>
+       :
+      <p>{error}</p>
+      }
      </div>
     </div>
   );
