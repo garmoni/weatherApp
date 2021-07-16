@@ -1,5 +1,7 @@
-.App {
+div, p {
   box-sizing: border-box;
+}
+.App {
   font-family: 'Jost', sans-serif;
 }
 .header {
@@ -9,8 +11,10 @@
 }
 .App-wrap {
   text-align: left;
+  max-width: 1440px;
   width: 90%;
-  padding: 15px 35px;
+  padding: 15px;
+  margin: 0 auto;
 }
 .form-block {
   margin-top: 20px;

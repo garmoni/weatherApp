@@ -44,6 +44,12 @@ const App = () => {
     } 
     e.target.elements.city.value = ''
   }
+
+  localStorage.setItem('data', JSON.stringify(cards))
+  const raw = localStorage.getItem('data')
+  const dataNew = JSON.parse(raw)
+  console.log(raw)
+  console.log(dataNew)
   
   return (
     <div className="App">
@@ -55,7 +61,7 @@ const App = () => {
         select={select}
 
       />
-         {cards ? 
+         {dataNew ? 
          <div className="form-block">
             {cards.map((item, i) => {
               return (

@@ -20,7 +20,7 @@ const Weather = ({ id, data, date, removeKards }) => {
                 </div>
                 <div className="img-block">
                     <img className="img-fluid" src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="" />
-                    <span className="description">{data.weather[0].main === 'Clear' ? 'Sunny' : data.weather[0].main}</span>
+                    <span className="description">{data.weather[0].main}</span>
                 </div>
             </div>
             <div className="form-bottom">
