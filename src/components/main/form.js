@@ -41,8 +41,8 @@ switch (select) {
                 <button>{nameButton}</button>
             </form>
             <select
-                id="listLeng"
-                className="leng-block"
+                id="listLang"
+                className="lang-block"
                 defaultValue={select}
                 onChange={changeSelect}
                 >

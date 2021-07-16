@@ -133,10 +133,10 @@
     font-size: 12px;
     cursor: pointer;
   }
-  .leng-block option, .leng-block {
+  .lang-block option, .lang-block {
     text-transform: uppercase;
   }
-  .leng-block {
+  .lang-block {
     border: none;
     width: 70px;
     outline:none;
