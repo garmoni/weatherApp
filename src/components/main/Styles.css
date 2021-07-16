@@ -1,6 +1,7 @@
-form {
+  .top-form {
     display: flex;
-    align-items: center;
+      justify-content: space-between;
+      align-items: center;
   }
   .rah-input-wrapper {
     width: 190px;
@@ -32,11 +33,6 @@ form {
   }
   .top.cold {
     background: url(../../img/temp-cold.jpg) no-repeat;
-  }
-  .form-block {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
   }
   .form-wrap {
     position: relative;
@@ -136,4 +132,12 @@ form {
     color: #C5C5C5 ;
     font-size: 12px;
     cursor: pointer;
+  }
+  .leng-block option, .leng-block {
+    text-transform: uppercase;
+  }
+  .leng-block {
+    border: none;
+    width: 70px;
+    outline:none;
   }

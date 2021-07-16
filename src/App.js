@@ -12,6 +12,7 @@ const App = () => {
   const date = new Date();
   const [error, setError] = useState()
   const [cards, setCards] = useState([])
+  const [select, setSelect] = useState("en");
 
   const addWeather = (data) => {
     if (data) {
@@ -23,19 +24,23 @@ const App = () => {
       setCards([...cards, newItem])
     }
   }
-  console.log(cards)
   const removeKards = (id) =>{
     setCards([...cards.filter((item) => item.id !== id)])
   }
+
+  const changeSelect = (e) =>{
+    setSelect(e.target.value)
+}
 
   const getWeather = async (e)  => {
     e.preventDefault();
     const cityName = e.target.elements.city.value;
     try {
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKeys}&lang=en`);
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKeys}&lang=${select}`);
       addWeather(response.data)
     } catch (error) {
       setError('Error');
+      console.log(error)
     } 
     e.target.elements.city.value = ''
   }
@@ -46,12 +51,13 @@ const App = () => {
       <div className="App-wrap">
       <Form 
         getWeather={getWeather}
+        changeSelect={changeSelect}
+        select={select}
 
       />
          {cards ? 
          <div className="form-block">
             {cards.map((item, i) => {
-              console.log(i)
               return (
                   <Weather 
                     data={item.card}

@@ -5,3 +5,7 @@ export const dateFormat = {
     DATE_TIME: 'ddd, DD MMMM, HH:mm',
     TIME: 'HH:mm',
   };
+
+  export const optionsEn = ["Dnipro", "Kyiv", "London", "Cherkasy", "Hobart", "Kazan", "Moscow"];
+  export const optionsUa = ["Дніпро", "Київ", "Лондон", "Черкаси", "Хобарт", "Казань", "Москва"];
+  export const optionsRu = ["Днепр", "Киев", "Лондон", "Черкассы", "Хобарт", "Казань", "Москва"];
