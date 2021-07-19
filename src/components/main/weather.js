@@ -29,9 +29,9 @@ const Weather = ({ id, data, date, removeKards }) => {
                     <div className="temp-item">
                         <div className="temp-element">{data.main.temp > 0 ? '+' : null}{units === 'metric' ? Math.round(data.main.temp) : Math.round(data.main.temp * 1.8 + 32)}</div>
                         <div className="units-items">
-                            <a onClick={hendleMetric} className={units === 'metric' ? "metric active" : "metric"}>&#8451;</a>
+                            <button onClick={hendleMetric} className={units === 'metric' ? "metric active" : "metric"}>&#8451;</button>
                             <span className="strip"> | </span>
-                            <a onClick={hendleImperial} className={units === 'imperial' ? "imperial active" : "imperial"}>&#8457;</a>
+                            <button href="" onClick={hendleImperial} className={units === 'imperial' ? "imperial active" : "imperial"}>&#8457;</button>
                         </div>
                         <div className="feels">Feels like: {data.main.feels_like > 0 ? '+' : null} {units === 'metric' ? `${Math.round(data.main.feels_like)} °C` : `${Math.round(data.main.feels_like * 1.8 + 32)} °F`}  </div>
                     </div>

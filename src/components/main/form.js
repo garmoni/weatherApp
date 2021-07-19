@@ -5,7 +5,7 @@ import './Styles.css'
 
 
 
-const Form = ({getWeather, changeSelect, select}) => { 
+const Form = ({getWeather, changeSelect, select, input, handleChange}) => { 
 
 let option, nameButton, namePlace
 
@@ -36,9 +36,11 @@ switch (select) {
                         type='text' 
                         name='city' 
                         placeholder={namePlace} 
+                        defaultValue={input}
+                        onChange={handleChange}
                     />
                 </Hint>
-                <button>{nameButton}</button>
+                <button className="form-button">{nameButton}</button>
             </form>
             <select
                 id="listLang"

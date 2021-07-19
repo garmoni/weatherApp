@@ -10,11 +10,37 @@ import './App.css';
 
 const App = () => {
   const lang = !JSON.parse(localStorage.getItem('lang'))? "en": JSON.parse(localStorage.getItem('lang'));
+  const dataCars = !JSON.parse(localStorage.getItem('data'))?'':JSON.parse(localStorage.getItem('data'))
   const [error, setError] = useState()
-  const [cards, setCards] = useState(JSON.parse(localStorage.getItem('data')))
+  const [cards, setCards] = useState(dataCars)
   const [select, setSelect] = useState(lang);
-  
+  const [input, setInput] = useState('')
 
+  const geoFindMe = (e) => {
+    function success(position) {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const getLocation = async () => {
+        try {
+          const response = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=${apiKeys}`);
+          setInput(response.data[0].name)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      getLocation()
+    }
+    navigator.geolocation.getCurrentPosition(success)
+  }
+
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  }
+
+  if(!dataCars){
+    geoFindMe()
+  }
+  
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(cards))
     localStorage.setItem('lang', JSON.stringify(select))
@@ -41,16 +67,17 @@ const App = () => {
 
   const getWeather = async (e) => {
     e.preventDefault();
-    const cityName = e.target.elements.city.value;
+    console.log(input)
     try {
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKeys}&lang=${select}`);
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiKeys}&lang=${select}`);
       addWeather(response.data)
+      setInput('')
     } catch (error) {
       setError('Error');
       console.log(error)
     }
-    e.target.elements.city.value = ''
   }
+  console.log(input)
 
   return (
     <div className="App">
@@ -59,8 +86,9 @@ const App = () => {
         <Form
           getWeather={getWeather}
           changeSelect={changeSelect}
+          handleChange={handleChange}
+          input={input}
           select={select}
-
         />
         {cards ?
           <div className="form-block">
