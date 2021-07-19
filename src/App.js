@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Form from './components/main/form';
@@ -9,12 +9,19 @@ import moment from 'moment';
 import './App.css';
 
 const App = () => {
-  const date = new Date();
+  const lang = !JSON.parse(localStorage.getItem('lang'))? "en": JSON.parse(localStorage.getItem('lang'));
   const [error, setError] = useState()
-  const [cards, setCards] = useState([])
-  const [select, setSelect] = useState("en");
+  const [cards, setCards] = useState(JSON.parse(localStorage.getItem('data')))
+  const [select, setSelect] = useState(lang);
+  
+
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(cards))
+    localStorage.setItem('lang', JSON.stringify(select))
+  }, [cards, select])
 
   const addWeather = (data) => {
+    const date = new Date();
     if (data) {
       const newItem = {
         id: Math.random().toString(15),
@@ -24,15 +31,15 @@ const App = () => {
       setCards([...cards, newItem])
     }
   }
-  const removeKards = (id) =>{
+  const removeKards = (id) => {
     setCards([...cards.filter((item) => item.id !== id)])
   }
 
-  const changeSelect = (e) =>{
+  const changeSelect = (e) => {
     setSelect(e.target.value)
-}
+  }
 
-  const getWeather = async (e)  => {
+  const getWeather = async (e) => {
     e.preventDefault();
     const cityName = e.target.elements.city.value;
     try {
@@ -41,45 +48,39 @@ const App = () => {
     } catch (error) {
       setError('Error');
       console.log(error)
-    } 
+    }
     e.target.elements.city.value = ''
   }
 
-  localStorage.setItem('data', JSON.stringify(cards))
-  const raw = localStorage.getItem('data')
-  const dataNew = JSON.parse(raw)
-  console.log(raw)
-  console.log(dataNew)
-  
   return (
     <div className="App">
       <header className="header"></header>
       <div className="App-wrap">
-      <Form 
-        getWeather={getWeather}
-        changeSelect={changeSelect}
-        select={select}
+        <Form
+          getWeather={getWeather}
+          changeSelect={changeSelect}
+          select={select}
 
-      />
-         {dataNew ? 
-         <div className="form-block">
+        />
+        {cards ?
+          <div className="form-block">
             {cards.map((item, i) => {
               return (
-                  <Weather 
-                    data={item.card}
-                    id={item.id}
-                    key={i}
-                    date={item.date}
-                    removeKards={removeKards}
+                <Weather
+                  data={item.card}
+                  id={item.id}
+                  key={i}
+                  date={item.date}
+                  removeKards={removeKards}
                 />
-                
+
               )
-      })}
-       </div>
-       :
-      <p>{error}</p>
-      }
-     </div>
+            })}
+          </div>
+          :
+          <p>{error}</p>
+        }
+      </div>
     </div>
   );
 }
