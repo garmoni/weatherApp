@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Styles.css';
 
 const Weather = ({ id, data, date, removeCards }) => {
@@ -45,6 +46,13 @@ const Weather = ({ id, data, date, removeCards }) => {
             <div className="del" onClick={() => removeCards(id)}>&#10006;</div>
         </div>
     )
+}
+
+Weather.propTypes = {
+    id: PropTypes.number.isRequired,
+    data: PropTypes.array, 
+    date: PropTypes.string.isRequired,
+    removeCards: PropTypes.func
 }
 
 export default Weather;

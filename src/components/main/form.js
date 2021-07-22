@@ -1,4 +1,5 @@
 import { Hint } from 'react-autocomplete-hint';
+import PropTypes from 'prop-types';
 import { optionsEn, optionsUa, optionsRu } from '../constant/constant';
 
 import './Styles.css'
@@ -52,6 +53,14 @@ const Form = ({ getWeather, changeSelect, select, input, handleChange }) => {
             </select>
         </div>
     )
+}
+
+Form.propTypes = {
+    select: PropTypes.string.isRequired,
+    input: PropTypes.string.isRequired,
+    handleChange: PropTypes.func, 
+    changeSelect: PropTypes.func,
+    getWeather: PropTypes.func
 }
 
 export default Form;
