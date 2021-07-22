@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './Styles.css';
 
-const Weather = ({ id, data, date, removeKards }) => {
+const Weather = ({ id, data, date, removeCards }) => {
     const [units, setUnits] = useState('metric')
 
-    const hendleMetric = () => {
+    const handleMetric = () => {
         setUnits('metric')
     }
-    const hendleImperial = () => {
+    const handleImperial = () => {
         setUnits('imperial')
     }
 
@@ -29,9 +29,9 @@ const Weather = ({ id, data, date, removeKards }) => {
                     <div className="temp-item">
                         <div className="temp-element">{data.main.temp > 0 ? '+' : null}{units === 'metric' ? Math.round(data.main.temp) : Math.round(data.main.temp * 1.8 + 32)}</div>
                         <div className="units-items">
-                            <button onClick={hendleMetric} className={units === 'metric' ? "metric active" : "metric"}>&#8451;</button>
+                            <button onClick={handleMetric} className={units === 'metric' ? "metric active" : "metric"}>&#8451;</button>
                             <span className="strip"> | </span>
-                            <button href="" onClick={hendleImperial} className={units === 'imperial' ? "imperial active" : "imperial"}>&#8457;</button>
+                            <button href="" onClick={handleImperial} className={units === 'imperial' ? "imperial active" : "imperial"}>&#8457;</button>
                         </div>
                         <div className="feels">Feels like: {data.main.feels_like > 0 ? '+' : null} {units === 'metric' ? `${Math.round(data.main.feels_like)} °C` : `${Math.round(data.main.feels_like * 1.8 + 32)} °F`}  </div>
                     </div>
@@ -42,7 +42,7 @@ const Weather = ({ id, data, date, removeKards }) => {
                     </div>
                 </div>
             </div>
-            <div className="del" onClick={()=>removeKards(id)}>&#10006;</div>
+            <div className="del" onClick={() => removeCards(id)}>&#10006;</div>
         </div>
     )
 }
