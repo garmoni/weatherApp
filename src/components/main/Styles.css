@@ -1,3 +1,24 @@
+.header {
+  height: 50px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e4e4e4;
+}
+.main-wrap {
+  text-align: left;
+  max-width: 1440px;
+  width: 90%;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-block {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+form {
+  display: flex;
+  align-items: center;
+}
   .top-form {
     display: flex;
       justify-content: space-between;
@@ -37,7 +58,7 @@
   .form-wrap {
     position: relative;
     width: 300px;
-    height: 200px;
+    height: 250px;
     background-color: #fff1fe;
     padding: 10px 15px;
     display: flex;
@@ -149,3 +170,19 @@
     width: 70px;
     outline:none;
   }
+  .scale-block {
+    padding: 20px 0;
+  }
+  .axis {
+    color: transparent;
+  }
+  .axis text {
+    color: #C5C5C5;
+  }
+ text {
+    font-size: 10px;
+  }
+  .svg {
+    overflow: visible;
+  }
+  

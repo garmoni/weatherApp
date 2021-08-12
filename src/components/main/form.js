@@ -58,7 +58,7 @@ const Form = ({ getWeather, changeSelect, select, input, handleChange }) => {
 Form.propTypes = {
     select: PropTypes.string.isRequired,
     input: PropTypes.string.isRequired,
-    handleChange: PropTypes.func, 
+    handleChange: PropTypes.func,
     changeSelect: PropTypes.func,
     getWeather: PropTypes.func
 }

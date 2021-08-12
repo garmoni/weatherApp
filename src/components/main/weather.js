@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { CurveWeather } from './curveWeather';
 import PropTypes from 'prop-types';
 import './Styles.css';
 
-const Weather = ({ id, data, date, removeCards }) => {
+const Weather = ({ id, data, date, time, removeCards }) => {
+    // time.push({name: '', value: 1});
     const [units, setUnits] = useState('metric')
 
     const handleMetric = () => {
@@ -24,8 +26,8 @@ const Weather = ({ id, data, date, removeCards }) => {
                     <span className="description">{data.weather[0].main}</span>
                 </div>
             </div>
+            <CurveWeather width={300} height={50} time={time} units={units} mainTemp={data.main.temp}/>
             <div className="form-bottom">
-                <div className={data.main.temp > 0 ? "top" : "top cold"}></div>
                 <div className="temp-block">
                     <div className="temp-item">
                         <div className="temp-element">{data.main.temp > 0 ? '+' : null}{units === 'metric' ? Math.round(data.main.temp) : Math.round(data.main.temp * 1.8 + 32)}</div>
@@ -49,8 +51,8 @@ const Weather = ({ id, data, date, removeCards }) => {
 }
 
 Weather.propTypes = {
-    id: PropTypes.number.isRequired,
-    data: PropTypes.array, 
+    id: PropTypes.string.isRequired,
+    data: PropTypes.object, 
     date: PropTypes.string.isRequired,
     removeCards: PropTypes.func
 }

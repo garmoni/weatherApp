@@ -4,24 +4,3 @@ div, p {
 .App {
   font-family: 'Jost', sans-serif;
 }
-.header {
-  height: 50px;
-  background-color: #fafafa;
-  border-bottom: 1px solid #e4e4e4;
-}
-.App-wrap {
-  text-align: left;
-  max-width: 1440px;
-  width: 90%;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-block {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-}
-form {
-  display: flex;
-  align-items: center;
-}
