@@ -57,14 +57,14 @@ export const Main = () => {
         setInput('')
         try {
             const responseList = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=${apiKeys}&units=metric`);
-            console.log(responseList)
             var filterArr = responseList.data.list.filter(function (number) {
                 return moment(date).isSame(number.dt_txt, 'day')
             });
             var listArr = filterArr.map(function (item) {
                 return { name: moment(item.dt_txt).format(dateFormat.TIME), value: Math.floor(item.main.temp) }
             });
-            console.log("function dataTime - listArr", listArr)
+            listArr.unshift({name: ' ', value: 1});
+            listArr.push({name: '', value: 1});
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiKeys}&lang=${select}`);
             const newItem = {
                 id: Math.random().toString(15),
@@ -74,7 +74,7 @@ export const Main = () => {
             } 
             setCards([...cards, newItem])
         } catch (error) {
-            setError('Error');
+            setInput('Wrong data');
         }
     }
 

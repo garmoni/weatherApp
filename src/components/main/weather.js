@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './Styles.css';
 
 const Weather = ({ id, data, date, time, removeCards }) => {
-    // time.push({name: '', value: 1});
     const [units, setUnits] = useState('metric')
 
     const handleMetric = () => {

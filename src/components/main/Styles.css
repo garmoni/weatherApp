@@ -185,4 +185,7 @@ form {
   .svg {
     overflow: visible;
   }
+  .temp-points:first-child, .temp-points:last-child {
+    display: none;
+  }
   

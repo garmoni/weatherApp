@@ -16,10 +16,10 @@ export const CurveWeather = ({ time, width, height, mainTemp, units}) => {
   };
   
   const areaPath = d3.area()
-    .x(d => getX(d.name) + getX.bandwidth() / 2)
+    .x(d => getX(d.name) + getX.bandwidth() / 4)
     .y0(d => getY(Math.abs(d.value)))
     .y1(() => getY(0))
-    .curve(d3.curveMonotoneY)(time)
+    .curve(d3.curveMonotoneX)(time)
 
   return (
     <div className="scale-block">
@@ -42,9 +42,10 @@ export const CurveWeather = ({ time, width, height, mainTemp, units}) => {
           d={areaPath}
           opacity={0.3}
         />
+        <g >
         {time.map((item, index) => {
           return (
-            <g key={index}>
+            <g className="temp-points" key={index}>
               <text
                 fill="#C5C5C5"
                 x={getX(item.name) + getX.bandwidth() / 2}
@@ -56,6 +57,7 @@ export const CurveWeather = ({ time, width, height, mainTemp, units}) => {
             </g>
           );
         })}
+        </g>
       </svg>
     </div>
   );
