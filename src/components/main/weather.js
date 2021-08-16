@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { CurveWeather } from './curveWeather';
 import PropTypes from 'prop-types';
+
 import './Styles.css';
 
-const Weather = ({ id, data, date, time, removeCards }) => {
+const Weather = ({ id, data, date, time, Feels_like, Wind, Humidity, Pressure, Pa, m_s, removeCards }) => {
     const [units, setUnits] = useState('metric')
 
     const handleMetric = () => {
@@ -35,12 +36,12 @@ const Weather = ({ id, data, date, time, removeCards }) => {
                             <span className="strip"> | </span>
                             <button href="" onClick={handleImperial} className={units === 'imperial' ? "imperial active" : "imperial"}>&#8457;</button>
                         </div>
-                        <div className="feels">Feels like: {data.main.feels_like > 0 ? '+' : null} {units === 'metric' ? `${Math.round(data.main.feels_like)} °C` : `${Math.round(data.main.feels_like * 1.8 + 32)} °F`}  </div>
+                        <div className="feels">{Feels_like}: {data.main.feels_like > 0 ? '+' : null} {units === 'metric' ? `${Math.round(data.main.feels_like)} °C` : `${Math.round(data.main.feels_like * 1.8 + 32)} °F`}  </div>
                     </div>
                     <div className="wind-block">
-                        <div>Wind: <span>{Math.round(data.wind.speed)} m/s</span></div>
-                        <div>Humidity: <span>{data.main.humidity}%</span></div>
-                        <div>Pressure: <span>{data.main.pressure}Pa</span></div>
+                        <div>{Wind}: <span>{Math.round(data.wind.speed)} {m_s}</span></div>
+                        <div>{Humidity}: <span>{data.main.humidity}%</span></div>
+                        <div>{Pressure}: <span>{data.main.pressure}{Pa}</span></div>
                     </div>
                 </div>
             </div>

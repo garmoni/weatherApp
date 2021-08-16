@@ -19,173 +19,189 @@ form {
   display: flex;
   align-items: center;
 }
-  .top-form {
-    display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-  .rah-input-wrapper {
-    width: 190px;
-  }
-  input, .form-button {
-    outline:none;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 12px;
-  }
-  input, .form-button, .form-wrap{
-    -webkit-box-shadow: 0px 3px 7px 0px rgba(57, 59, 60, 0.2);
-    -moz-box-shadow: 0px 3px 7px 0px rgba(57, 59, 60, 0.2);
-    box-shadow: 0px 3px 7px 0px rgba(57, 59, 60, 0.2);
-  }
-  .form-button {
-    background: #459de9;
-    width: 100px;
-    color: #fff;
-    margin-left: 15px;
-    cursor: pointer;
-  }
-  .form-button:hover {
-    opacity: 0.9;
-  }
-  .top {
-    height: 50px;
-    background: url(../../img/temp.jpg) no-repeat;
-  }
-  .top.cold {
-    background: url(../../img/temp-cold.jpg) no-repeat;
+.top-form {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rah-input-wrapper {
+  width: 190px;
+}
+input, .form-button {
+  outline:none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+}
+input, .form-button, .form-wrap{
+  -webkit-box-shadow: 0px 3px 7px 0px rgba(57, 59, 60, 0.2);
+  -moz-box-shadow: 0px 3px 7px 0px rgba(57, 59, 60, 0.2);
+  box-shadow: 0px 3px 7px 0px rgba(57, 59, 60, 0.2);
+}
+.form-button {
+  background: #459de9;
+  width: 100px;
+  color: #fff;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.form-button:hover {
+  opacity: 0.9;
+}
+.top {
+  height: 50px;
+  background: url(../../img/temp.jpg) no-repeat;
+}
+.top.cold {
+  background: url(../../img/temp-cold.jpg) no-repeat;
+}
+.form-wrap {
+  position: relative;
+  width: 300px;
+  height: 250px;
+  background-color: #fff1fe;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 25px 20px 0;  
+}
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.img-block {
+  display: flex;
+  align-items: center;
+}
+.img-fluid {
+  width: 40px;
+}
+.description {
+  font-size: 12px;
+  color: #C5C5C5;
+  text-transform: capitalize;
+}
+.temp-block {
+  display: flex;
+  justify-content: space-between;
+}
+.temp-item {
+  display: flex;
+  align-items: flex-start;
+  width: 164px;
+  flex-wrap: wrap;
+}
+.temp-element {
+font-size: 44px;
+width: 80px;
+line-height: 1;
+}
+.wind-block {
+  padding: 8px 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.9;
+  text-align: right;
+}
+.wind-block span {
+  color: #459DE9;
+}
+.units-items {
+  margin-left: 5px;
+}
+.metric, .imperial{
+  cursor: pointer;
+  border: none;
+  display: inline;
+  background-color: transparent;
+  padding: 0;
+  outline:none;
+}
+.metric, .imperial, .strip {
+font-size: 22px;
+color: #8D8D8D;
+}
+.metric.active, .imperial.active {
+  color: black;
+}
+.feels {
+  color: #C5C5C5;
+  font-size: 13px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: #a1a1a1;
+  font-size: 11px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #a1a1a1;
+  font-size: 11px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #a1a1a1;
+  font-size: 11px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #a1a1a1;
+  font-size: 11px;
+}
+.name {
+  font-size: 16px;
+  font-weight: 500;
+}
+.date {
+  font-weight: 400;
+  margin-top: 5px;
+  font-size: 18px;
+}
+.del {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #C5C5C5 ;
+  font-size: 12px;
+  cursor: pointer;
+}
+.lang-block option, .lang-block {
+  text-transform: uppercase;
+}
+.lang-block {
+  border: none;
+  width: 70px;
+  outline:none;
+}
+.scale-block {
+  padding: 20px 0;
+}
+.axis {
+  color: transparent;
+}
+.axis text {
+  color: #C5C5C5;
+}
+text {
+  font-size: 10px;
+}
+.svg {
+  overflow: visible;
+}
+.temp-points:first-child, .temp-points:last-child {
+  display: none;
+}
+@media (max-width: 425px) {
+  .main-wrap {
+    width: 100%;
+    padding: 15px 5px;
   }
   .form-wrap {
-    position: relative;
-    width: 300px;
-    height: 250px;
-    background-color: #fff1fe;
-    padding: 10px 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0 25px 20px 0;  
+    margin: 0 auto 10px;
   }
-  .form-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .img-block {
-    display: flex;
-    align-items: center;
-  }
-  .img-fluid {
-    width: 40px;
-  }
- .description {
-   font-size: 12px;
-   color: #C5C5C5;
-   text-transform: capitalize;
- }
- .temp-block {
-   display: flex;
-   justify-content: space-between;
- }
- .temp-item {
-   display: flex;
-   align-items: flex-start;
-   width: 170px;
-   flex-wrap: wrap;
- }
- .temp-element {
-  font-size: 44px;
-  width: 80px;
- }
- .wind-block {
-    padding: 8px 0;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.9;
-    text-align: right;
- }
- .wind-block span {
-   color: #459DE9;
- }
- .units-items {
-   margin-left: 5px;
- }
- .metric, .imperial{
-   cursor: pointer;
-   border: none;
-   display: inline;
-   background-color: transparent;
-   padding: 0;
-   outline:none;
- }
- .metric, .imperial, .strip {
-  font-size: 22px;
-  color: #8D8D8D;
- }
- .metric.active, .imperial.active {
-   color: black;
- }
- .feels {
-   color: #C5C5C5;
-   font-size: 13px;
- }
-  ::-webkit-input-placeholder { /* WebKit browsers */
-    color: #a1a1a1;
-    font-size: 11px;
-  }
-  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #a1a1a1;
-    font-size: 11px;
-  }
-  ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #a1a1a1;
-    font-size: 11px;
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: #a1a1a1;
-    font-size: 11px;
-  }
-  .name {
-    font-size: 16px;
-    font-weight: 500;
-  }
-  .date {
-    font-weight: 400;
-    margin-top: 5px;
-    font-size: 18px;
-  }
-  .del {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    color: #C5C5C5 ;
-    font-size: 12px;
-    cursor: pointer;
-  }
-  .lang-block option, .lang-block {
-    text-transform: uppercase;
+  .top-form {
+    flex-wrap: wrap;
   }
   .lang-block {
-    border: none;
-    width: 70px;
-    outline:none;
+    margin: 20px auto 0;
+    width: 90%;
   }
-  .scale-block {
-    padding: 20px 0;
-  }
-  .axis {
-    color: transparent;
-  }
-  .axis text {
-    color: #C5C5C5;
-  }
- text {
-    font-size: 10px;
-  }
-  .svg {
-    overflow: visible;
-  }
-  .temp-points:first-child, .temp-points:last-child {
-    display: none;
-  }
-  
+}
