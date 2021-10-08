@@ -8,7 +8,7 @@ export const dateFormat = {
 
 export const optionsEn = ["Dnipro", "Kyiv", "London", "Cherkasy", "Hobart", "Kazan", "Moscow", "Cairo", "Reykjavík"];
 export const optionsUa = ["Дніпро", "Київ", "Лондон", "Черкаси", "Хобарт", "Казань", "Москва"];
-export const optionsRu = ["Днепр", "Киев", "Лондон", "Черкассы", "Хобарт", "Казань", "Москва", "Бугрино", "Мехамн"];
+export const optionsRu = ["Днепр", "Киев", "Лондон", "Черкассы", "Хобарт", "Казань", "Москва", "Бугрино", "Мехамн", "Верхоянск"];
 
 export const textEn = {
   FEELS_LIKE: 'Feels like',

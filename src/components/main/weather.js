@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './Styles.css';
 
-const Weather = ({ id, data, date, time, Feels_like, Wind, Humidity, Pressure, Pa, m_s, removeCards }) => {
+const Weather = ({ id, data, date, time, Feels_like, Wind, Humidity, Pressure, Pa, m_s, removeCards, colorStopStart }) => {
     const [units, setUnits] = useState('metric')
 
     const handleMetric = () => {
@@ -15,7 +15,7 @@ const Weather = ({ id, data, date, time, Feels_like, Wind, Humidity, Pressure, P
     }
 
     return (
-        <div className="form-wrap" key={id}>
+        <div className="form-wrap" key={id} style={{backgroundColor: data.main.temp > 0?"#fff1fe":"#f1f2ff"} }>
             <div className="form-header">
                 <div className="name-block">
                     <div className="name">{data.name}, {data.sys.country}</div>
@@ -26,7 +26,7 @@ const Weather = ({ id, data, date, time, Feels_like, Wind, Humidity, Pressure, P
                     <span className="description">{data.weather[0].main}</span>
                 </div>
             </div>
-            <CurveWeather width={300} height={50} time={time} units={units} mainTemp={data.main.temp}/>
+            <CurveWeather width={300} height={50} id = {id} time={time} units={units} colorStopStart={colorStopStart}/>
             <div className="form-bottom">
                 <div className="temp-block">
                     <div className="temp-item">
