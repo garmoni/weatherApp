@@ -6,7 +6,8 @@ import './Styles.css';
 
 const Weather = ({ id, data, date, time, Feels_like, Wind, Humidity, Pressure, Pa, m_s, removeCards, colorStopStart }) => {
     const [units, setUnits] = useState('metric')
-
+    
+//Changing the unit of metric
     const handleMetric = () => {
         setUnits('metric')
     }

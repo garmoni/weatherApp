@@ -23,6 +23,7 @@ export const Main = () => {
     }
 
     useEffect(() => {
+        //If the user is on the site for the first time requesting a location
         if (!cards) {
             function success(position) {
                 const { latitude, longitude } = position.coords
@@ -42,6 +43,7 @@ export const Main = () => {
     }, [])
 
     useEffect(() => {
+        //Save data in localStorage
         localStorage.setItem('data', JSON.stringify(cards))
         localStorage.setItem('lang', JSON.stringify(select))
     }, [cards, select])
@@ -50,6 +52,7 @@ export const Main = () => {
         e.preventDefault();
         setCityName(input)
         setInput('')
+        //Text translation from language select
         let language = SwitchLanguage(select)
         try {
             const responseList = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${input}&appid=${apiKeys}&units=metric`);
@@ -59,11 +62,13 @@ export const Main = () => {
             var listArr = filterArr.map(function (item) {
                 return { name: moment(item.dt_txt).format(dateFormat.TIME), value: Math.floor(item.main.temp) }
             });
+            //Add start and end point of the temperature graph for smoothing
             listArr.unshift({name: ' ', value: 1});
             listArr.push({name: '', value: 1});
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiKeys}&lang=${select}`);
+            //The choice of the color of the graph depends on the temperature
             let colorStopStart = Math.round(response.data.main.temp) < 0 ? "#5B8CFF": "#FF715B"
-
+            //Create a new card
             const newItem = {
                 id: Math.random().toString(15),
                 card: response.data,
@@ -83,6 +88,7 @@ export const Main = () => {
         }
     }
 
+    //Remove card
     const removeCards = (id) => {
         setCards([...cards.filter((item) => item.id !== id)])
     }
