@@ -5,6 +5,7 @@ import Form from './form';
 import Weather from './weather';
 import {SwitchLanguage} from './language';
 import { apiKeys, dateFormat } from '../constant/constant';
+import { Location } from './location';
 import moment from 'moment';
 
 import './Styles.css';
@@ -23,25 +24,13 @@ export const Main = () => {
     }
 
     useEffect(() => {
-        //If the user is on the site for the first time requesting a location
         if (!cards) {
-            function success(position) {
-                const { latitude, longitude } = position.coords
-                fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=${apiKeys}`)
-                    .then(res => res.json())
-                    .then(
-                        (result) => {
-                            return setInput(result[0].name)
-                        },
-                        (error) => {
-                            return error;
-                        }
-                    )
-            }
-            navigator.geolocation.getCurrentPosition(success)
+            Location((result) => {
+                setInput(result);
+               })    
         }
-    }, [])
-
+     }, [])
+    
     useEffect(() => {
         //Save data in localStorage
         localStorage.setItem('data', JSON.stringify(cards))
