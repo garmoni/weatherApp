@@ -1,14 +1,18 @@
+import React from 'react';
 import { Hint } from 'react-autocomplete-hint';
 import PropTypes from 'prop-types';
 import { optionsEn, optionsUa, optionsRu } from '../constant/constant';
+import {connect} from 'react-redux';
 
 import './Styles.css'
 
-const Form = ({ getWeather, changeSelect, select, input, handleChange }) => {
-
+class Form extends React.Component{
+    
+    render() {
+    
     let option, nameButton, namePlace
 
-    switch (select) {
+    switch (this.props.select) {
         case "en":
             option = optionsEn;
             nameButton = "Add";
@@ -26,33 +30,33 @@ const Form = ({ getWeather, changeSelect, select, input, handleChange }) => {
             break;
         default:
     }
-
-    return (
-        <div className="top-form">
-            <form onSubmit={getWeather}>
-                <Hint options={option}>
-                    <input
-                        type='text'
-                        name='city'
-                        placeholder={namePlace}
-                        value={input}
-                        onChange={handleChange}
-                    />
-                </Hint>
-                <button className="form-button">{nameButton}</button>
-            </form>
-            <select
-                id="listLang"
-                className="lang-block"
-                defaultValue={select}
-                onChange={changeSelect}
-            >
-                <option value="en"> en </option>
-                <option value="ua"> ua </option>
-                <option value="ru"> ru </option>
-            </select>
-        </div>
-    )
+        return (
+            <div className="top-form">
+                <form onSubmit={this.props.getWeather}>
+                    <Hint options={option}>
+                        <input
+                            type='text'
+                            name='city'
+                            placeholder={namePlace}
+                            value={this.props.input}
+                            onChange={this.props.handleChange}
+                        />
+                    </Hint>
+                    <button className="form-button">{nameButton}</button>
+                </form>
+                <select
+                    id="listLang"
+                    className="lang-block"
+                    defaultValue={this.props.select}
+                    onChange={this.props.changeSelect}
+                >
+                    <option value="en"> en </option>
+                    <option value="ua"> ua </option>
+                    <option value="ru"> ru </option>
+                </select>
+            </div>
+        )
+    }
 }
 
 Form.propTypes = {
@@ -63,4 +67,8 @@ Form.propTypes = {
     getWeather: PropTypes.func
 }
 
-export default Form;
+const mapDispatchToProps = {
+    
+}
+
+export default connect(null, mapDispatchToProps)(Form);
