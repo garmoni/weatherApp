@@ -14,7 +14,7 @@ import AddCards from './addCards';
 
 const Main = ({weatherCard}) => {
     const lang = !JSON.parse(localStorage.getItem('lang')) ? "en" : JSON.parse(localStorage.getItem('lang'));
-    const dataCars = !JSON.parse(localStorage.getItem('data')) ? '' : JSON.parse(localStorage.getItem('data'))
+    //const dataCars = !JSON.parse(localStorage.getItem('data')) ? '' : JSON.parse(localStorage.getItem('data'))
     //const [cards, setCards] = useState(dataCars)
     const [select, setSelect] = useState(lang);
     const [input, setInput] = useState('')
@@ -23,13 +23,13 @@ const Main = ({weatherCard}) => {
         setInput(event.target.value);
     }
 
-    useEffect(() => {
-        if (!dataCars) {
-            Location((result) => {
-                setInput(result);
-               })    
-        }
-     }, [])
+    // useEffect(() => {
+    //     if (!dataCars) {
+    //         Location((result) => {
+    //             setInput(result);
+    //            })    
+    //     }
+    //  }, [])
     
     useEffect(() => {
         //Save data in localStorage
