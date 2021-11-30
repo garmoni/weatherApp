@@ -55,6 +55,11 @@ input, .form-button, .form-wrap{
 .top.cold {
   background: url(../../img/temp-cold.jpg) no-repeat;
 }
+.cards-block {
+  display: flex;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
 .form-wrap {
   position: relative;
   width: 300px;
