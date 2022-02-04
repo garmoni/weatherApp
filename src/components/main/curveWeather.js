@@ -52,7 +52,7 @@ export const CurveWeather = ({ id, time, width, height, colorStopStart, units })
                   y={getY(Math.abs(item.value)) - 5}
                   textAnchor="middle"
                 >
-                  {units === 'metric' ? Math.round(item.value) : Math.round(item.value * 1.8 + 32)}
+                  {Math.round(item.value)}
                 </text>
               </g>
             );

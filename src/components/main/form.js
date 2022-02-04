@@ -8,8 +8,6 @@ import {SwitchLanguage} from './language';
 import moment from 'moment';
 
 import './Styles.css'
-import { json } from 'd3-fetch';
-
 class Form extends React.Component{
     constructor(props) {
         super(props)
@@ -20,7 +18,8 @@ class Form extends React.Component{
         }
       }
 
-      getGraph = () => {
+      getWeather = event => {
+        event.preventDefault()
         let date = new Date()
         this.props.fetchedDataGraph(this.props.input)
         .then((data) => {           
@@ -37,46 +36,42 @@ class Form extends React.Component{
         .catch ((e) => {
             return console.log(e)
          })
-         .finally(() => {})
+         .finally(() => {this.getData()})
       }
-      
-      getWeather = event => {
-          event.preventDefault()
-          this.getGraph()
-          
-          let language = SwitchLanguage(this.props.select)
-          
-          this.props.fetchData(this.props.input, this.props.select) 
-          .then((json) => {
-            const newCard = {
-                id: Math.random().toString(15),
-                name_city: json.name,
-                main_temp: json.main.temp,
-                sys_country: json.sys.country,
-                icon: json.weather[0].icon,
-                discript: json.weather[0].main,
-                feels_like: json.main.feels_like,
-                wind_speed: json.wind.speed,
-                humidity: json.main.humidity,
-                pressure: json.main.pressure,
-                color: Math.round(json.main.temp) < 0 ? "#5B8CFF": "#FF715B",
-                date: moment(this.state.date).format(dateFormat.DATE_TIME),
-                Feels_like: language[0],
-                Wind:  language[1],
-                Humidity:  language[2],
-                Pressure:  language[3],
-                Pa:  language[4],
-                m_s:  language[5],
-                graph: this.state.listArr,
-            }
-            this.props.createCard(newCard)
-            this.setState({isInput: true})
-            })
-            .catch ((e) => {
-                this.setState({isInput: false})
-                return console.log(e)
-             })
-             .finally(() => {this.props.handleButton()})
+
+      getData = () => {
+        let language = SwitchLanguage(this.props.select)       
+        this.props.fetchData(this.props.input, this.props.select) 
+        .then((json) => {
+          const newCard = {
+              id: Math.random().toString(15),
+              name_city: json.name,
+              main_temp: json.main.temp,
+              sys_country: json.sys.country,
+              icon: json.weather[0].icon,
+              discript: json.weather[0].main,
+              feels_like: json.main.feels_like,
+              wind_speed: json.wind.speed,
+              humidity: json.main.humidity,
+              pressure: json.main.pressure,
+              color: Math.round(json.main.temp) < 0 ? "#5B8CFF": "#FF715B",
+              date: moment(this.state.date).format(dateFormat.DATE_TIME),
+              Feels_like: language[0],
+              Wind:  language[1],
+              Humidity:  language[2],
+              Pressure:  language[3],
+              Pa:  language[4],
+              m_s:  language[5],
+              graph: this.state.listArr,
+          }
+          this.props.createCard(newCard)
+          this.setState({isInput: true})
+          })
+          .catch ((e) => {
+              this.setState({isInput: false})
+              return console.log(e)
+           })
+           .finally(() => {this.props.handleButton()})
       }
     
     render() {

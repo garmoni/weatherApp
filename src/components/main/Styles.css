@@ -100,7 +100,6 @@ input, .form-button, .form-wrap{
 }
 .temp-element {
 font-size: 44px;
-width: 80px;
 line-height: 1;
 }
 .wind-block {
@@ -168,6 +167,8 @@ color: #8D8D8D;
   color: #C5C5C5 ;
   font-size: 12px;
   cursor: pointer;
+  border: none;
+  outline: none;
 }
 .lang-block option, .lang-block {
   text-transform: uppercase;

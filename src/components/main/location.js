@@ -8,6 +8,7 @@ export const Location = (n) => {
             .then(
                 (result) => {
                     n(result[0].name)
+                    console.log( n(result[0].name))
                 },
                 (error) => {
                     return error;
