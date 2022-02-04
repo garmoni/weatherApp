@@ -11,12 +11,9 @@ class AddCards extends React.Component {
     }
     
   render() {
-    
-    const { units } = this.state
+    const { card } = this.props
 
     return (
-      <div className="cards-block">
-        {this.props.weatherCard.map(card =>
           <div className="form-wrap" key={card.id} 
           style={{ backgroundColor: card.main_temp > 0 ? "#fff1fe" : "#f1f2ff" }}
           >
@@ -30,19 +27,19 @@ class AddCards extends React.Component {
                 <span className="description">{card.discript}</span>
               </div>
             </div>
-            <CurveWeather width={300} height={50} id={card.id} time={card.graph} units={units} colorStopStart={card.color} />
+            <CurveWeather width={300} height={50} id={card.id} time={card.graph} units={this.state.units} colorStopStart={card.color} />
             <div className="form-bottom">
               <div className="temp-block">
                 <div className="temp-item">
                   <div className="temp-element">
-                  {card.main_temp > 0 ? '+' : null}{units === 'metric' ? Math.round(card.main_temp) : Math.round(card.main_temp * 1.8 + 32)}
+                  {card.main_temp > 0 ? '+' : null}{this.state.units === 'metric' ? Math.round(card.main_temp) : Math.round(card.main_temp * 1.8 + 32)}
                   </div>
                   <div className="units-items">
                     <button 
                       onClick={() => {
                         this.setState({units:'metric'})
                       }}
-                      className={units === 'metric' ? "metric active" : "metric"}
+                      className={this.state.units === 'metric' ? "metric active" : "metric"}
                     >
                       &#8451;
                       </button>
@@ -51,13 +48,13 @@ class AddCards extends React.Component {
                       onClick={() => {
                         this.setState({units:'imperial'})
                       }}
-                      className={units === 'imperial' ? "imperial active" : "imperial"}
+                      className={this.state.units === 'imperial' ? "imperial active" : "imperial"}
                     >
                       &#8457;
                     </button>
                   </div>
                   <div className="feels">{`${card.Feels_like}: `}
-                    {card.feels_like > 0 ? '+' : null} {units === 'metric' ? `${Math.round(card.feels_like)} °C` : `${Math.round(card.feels_like * 1.8 + 32)} °F`}  
+                    {card.feels_like > 0 ? '+' : null} {this.state.units === 'metric' ? `${Math.round(card.feels_like)} °C` : `${Math.round(card.feels_like * 1.8 + 32)} °F`} 
                   </div>
                 </div>
                 <div className="wind-block">
@@ -76,14 +73,12 @@ class AddCards extends React.Component {
               &#10006;
             </button>
           </div>
-        )}
-      </div>
     )
   }
 }
 const mapStateToProps = state => {
   return {
-    weatherCard: state.cards.cards
+    //weatherCard: state.cards.cards
   }
 }
 const mapDispatchToProps = {

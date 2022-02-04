@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
 import { connect } from 'react-redux';
 import { Location } from './location';
 import Form from './form';
@@ -7,9 +8,11 @@ import './Styles.css';
 import AddCards from './addCards';
 
 const Main = () => {
+    //const dispatch = useDispatch();
     const lang = !JSON.parse(localStorage.getItem('lang')) ? "en" : JSON.parse(localStorage.getItem('lang'));
     const [select, setSelect] = useState(lang);
     const [input, setInput] = useState('')
+    const weatherCard = useSelector((state) => state.cards.cards);
 
     const handleChange = (event) => {
         setInput(event.target.value);
@@ -47,7 +50,11 @@ const Main = () => {
                     input={input}
                     select={select}
                 />
-                <AddCards />
+                <div className="cards-block">
+                    {weatherCard.map((card, id) =>(
+                        <AddCards card={card} key={id}/>
+                    ))}
+                </div>
             </div>
         </>
     );
