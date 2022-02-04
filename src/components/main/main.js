@@ -6,7 +6,7 @@ import Form from './form';
 import './Styles.css';
 import AddCards from './addCards';
 
-const Main = (props) => {
+const Main = () => {
     const lang = !JSON.parse(localStorage.getItem('lang')) ? "en" : JSON.parse(localStorage.getItem('lang'));
     const [select, setSelect] = useState(lang);
     const [input, setInput] = useState('')

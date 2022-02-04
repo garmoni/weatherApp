@@ -169,6 +169,11 @@ color: #8D8D8D;
   cursor: pointer;
   border: none;
   outline: none;
+  background-color: transparent;
+  transition: all ease 0.2s;
+}
+.del:hover {
+  color: #919191 ;
 }
 .lang-block option, .lang-block {
   text-transform: uppercase;
