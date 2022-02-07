@@ -5,10 +5,10 @@ import { Location } from './location';
 import Form from './form';
 
 import './Styles.css';
-import AddCards from './addCards';
+import AddCards from './cards/addCards';
 
 const Main = () => {
-    //const dispatch = useDispatch();
+
     const lang = !JSON.parse(localStorage.getItem('lang')) ? "en" : JSON.parse(localStorage.getItem('lang'));
     const [select, setSelect] = useState(lang);
     const [input, setInput] = useState('')
