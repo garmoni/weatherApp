@@ -13,7 +13,7 @@ class Form extends React.Component{
         super(props)
         this.state = {
             isInput: true,
-            date: new Date(),
+            //date: new Date(),
             listArr: []
         }
       }
@@ -40,7 +40,8 @@ class Form extends React.Component{
       }
 
       getData = () => {
-        let language = SwitchLanguage(this.props.select)       
+        let language = SwitchLanguage(this.props.select)  
+        let date = new Date()     
         this.props.fetchData(this.props.input, this.props.select) 
         .then((json) => {
           const newCard = {
@@ -55,7 +56,7 @@ class Form extends React.Component{
               humidity: json.main.humidity,
               pressure: json.main.pressure,
               color: Math.round(json.main.temp) < 0 ? "#5B8CFF": "#FF715B",
-              date: moment(this.state.date).format(dateFormat.DATE_TIME),
+              date: moment(date).format(dateFormat.DATE_TIME),
               Feels_like: language[0],
               Wind:  language[1],
               Humidity:  language[2],
