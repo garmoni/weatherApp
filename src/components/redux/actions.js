@@ -1,4 +1,4 @@
-import { CREATE_CARD, FETCH_DATA, FETCH_DATA_GRAPH, DEL_CARD } from "./types";
+import { CREATE_CARD, FETCH_DATA, FETCH_DATA_GRAPH, DEL_CARD, IS_LOADING } from "./types";
 import { apiKeys } from "../constant/constant";
 
 export function createCard(cards) {
@@ -9,9 +9,11 @@ export function createCard(cards) {
 }
 export function fetchData(input, select) {
     return async dispatch =>  {
+        dispatch({type: IS_LOADING, payload: true})
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiKeys}&lang=${select}`)
         const json = await response.json()
         dispatch({type: FETCH_DATA, payload: json})
+        dispatch({type: IS_LOADING, payload: false})
         return json
     }
 }

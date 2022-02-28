@@ -75,7 +75,7 @@ class Form extends React.Component{
       }
     
     render() {
-
+    const { isLoading } = this.props
     let option, nameButton, namePlace, errorData
     switch (this.props.select) {
         case "en":
@@ -109,15 +109,17 @@ class Form extends React.Component{
                             placeholder={this.state.isInput? namePlace: errorData}
                             value={this.props.input}
                             onChange={this.props.handleChange}
+                            disabled={isLoading}
                         />
                     </Hint>
-                    <button className="form-button" >{nameButton}</button>
+                    <button className="form-button" disabled={isLoading}>{nameButton}</button>
                 </form>
                 <select
                     id="listLang"
                     className="lang-block"
                     defaultValue={this.props.select}
-                    onChange={this.props.changeSelect}
+                    onChange={this.props.handleChange}
+                    disabled={isLoading}
                 >
                     <option value="en"> en </option>
                     <option value="ua"> ua </option>
@@ -136,8 +138,14 @@ Form.propTypes = {
     getWeather: PropTypes.func
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isLoading: state.cards.loading,
+    }
+}
+
 const mapDispatchToProps = {
     createCard, fetchData, fetchedDataGraph
 }
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

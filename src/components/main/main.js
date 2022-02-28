@@ -10,13 +10,8 @@ import AddCards from './cards/addCards';
 const Main = () => {
 
     const lang = !JSON.parse(localStorage.getItem('lang')) ? "en" : JSON.parse(localStorage.getItem('lang'));
-    const [select, setSelect] = useState(lang);
     const [input, setInput] = useState('')
     const weatherCard = useSelector((state) => state.cards.cards);
-
-    const handleChange = (event) => {
-        setInput(event.target.value);
-    }
 
     useEffect(() => {
         if (localStorage.getItem('redux-store') == null)
@@ -28,32 +23,21 @@ const Main = () => {
     })
     
     useEffect(() => {
-        localStorage.setItem('lang', JSON.stringify(select))
-    }, [select])
-
-    const handleButton = () => {
-        setInput('')
-    }
-
-    const changeSelect = (e) => {
-        setSelect(e.target.value)
-    }
+        localStorage.setItem('lang', JSON.stringify(lang))
+    }, [lang])
 
     return (
         <>
             <header className="header"></header>
             <div className="main-wrap">
                 <Form
-                    handleButton={handleButton}
-                    changeSelect={changeSelect}
-                    handleChange={handleChange}
+                    handleButton={() => setInput('')}
+                    handleChange={(event) => setInput(event.target.value)}
                     input={input}
-                    select={select}
+                    select={lang}
                 />
                 <div className="cards-block">
-                    {weatherCard.map((card, id) =>(
-                        <AddCards card={card} key={id}/>
-                    ))}
+                    { weatherCard.map((card, id) =>(<AddCards card={card} key={id}/>))}
                 </div>
             </div>
         </>

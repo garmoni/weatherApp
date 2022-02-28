@@ -22,6 +22,7 @@ store.subscribe(() => {
   localStorage.setItem('redux-store', JSON.stringify(store.getState()))
 })
 
+
 const app = (
   <Provider store={store}>
     <App />

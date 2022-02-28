@@ -201,6 +201,8 @@ text {
 .temp-points:first-child, .temp-points:last-child {
   display: none;
 }
+input[type="text"]:disabled, button:disabled { background: #ccc; } 
+
 @media (max-width: 425px) {
   .main-wrap {
     width: 100%;
