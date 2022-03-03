@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { delCard } from '../../redux/actions';
-import { CurveWeather } from '../curveWeather';
+import { CurveWeather } from './curveWeather';
 import HeaderCard from './headerCard';
 import TemperatureCard from './temperatureCard';
 

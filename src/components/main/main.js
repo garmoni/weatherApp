@@ -11,6 +11,7 @@ const Main = () => {
 
     const lang = !JSON.parse(localStorage.getItem('lang')) ? "en" : JSON.parse(localStorage.getItem('lang'));
     const [input, setInput] = useState('')
+    const [select, setSelect] = useState(lang);
     const weatherCard = useSelector((state) => state.cards.cards);
 
     useEffect(() => {
@@ -23,8 +24,8 @@ const Main = () => {
     })
     
     useEffect(() => {
-        localStorage.setItem('lang', JSON.stringify(lang))
-    }, [lang])
+        localStorage.setItem('lang', JSON.stringify(select))
+    }, [select])
 
     return (
         <>
@@ -32,9 +33,10 @@ const Main = () => {
             <div className="main-wrap">
                 <Form
                     handleButton={() => setInput('')}
-                    handleChange={(event) => setInput(event.target.value)}
+                    changeSelect={(e) => setSelect(e.target.value)}
+                    handleChange={(e) => setInput(e.target.value)}
                     input={input}
-                    select={lang}
+                    select={select}
                 />
                 <div className="cards-block">
                     { weatherCard.map((card, id) =>(<AddCards card={card} key={id}/>))}

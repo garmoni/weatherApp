@@ -13,7 +13,6 @@ class Form extends React.Component{
         super(props)
         this.state = {
             isInput: true,
-            //date: new Date(),
             listArr: []
         }
       }
@@ -119,7 +118,7 @@ class Form extends React.Component{
                     id="listLang"
                     className="lang-block"
                     defaultValue={this.props.select}
-                    onChange={this.props.handleChange}
+                    onChange={this.props.changeSelect}
                     disabled={isLoading}
                 >
                     <option value="en"> en </option>
