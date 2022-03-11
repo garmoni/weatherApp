@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { connect } from 'react-redux';
 import { Location } from './location';
 import Form from './form';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import './Styles.css';
 import AddCards from './cards/addCards';
@@ -28,10 +27,6 @@ const Main = () => {
         localStorage.setItem('lang', JSON.stringify(select))
     }, [select])
 
-    const onDragEnd = () => {
-
-    }
-
     return (
         <>
             <header className="header"></header>
@@ -43,20 +38,9 @@ const Main = () => {
                     input={input}
                     select={select}
                 />
-                <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId='1'>
-                    {(provided) => (
-                    <div 
-                        className="cards-block"
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                    >
-                        { weatherCard.map((card, id) =>(<AddCards card={card} index={id} key={id} id={card.id}/>))}
-                        {provided.placeholder}
-                    </div>
-                    )}
-                    </Droppable>
-                </DragDropContext>
+                <div className="cards-block">
+                    { weatherCard.map((card, id) =>(<AddCards card={card} key={id}/>))}
+                </div>
             </div>
         </>
     );

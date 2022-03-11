@@ -4,7 +4,6 @@ import { delCard } from '../../redux/actions';
 import { CurveWeather } from './curveWeather';
 import HeaderCard from './headerCard';
 import TemperatureCard from './temperatureCard';
-import { Draggable } from 'react-beautiful-dnd';
 
 import '../Styles.css'
 
@@ -19,38 +18,24 @@ class AddCards extends React.Component {
     this.setState({ units: 'imperial' })
   }
   render() {
-    const { card, id, index } = this.props
+    const { card } = this.props
 
     return (
-      <Draggable key={id} draggableId={id} index={index}>
-        {(provided) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <div
-              className="card-wrap"
-              key={card.id}
-              style={{ backgroundColor: card.main_temp > 0 ? "#fff1fe" : "#f1f2ff" }}
-            >
-              <HeaderCard {...this.props.card} />
-              <CurveWeather width={300} height={50} id={card.id} time={card.graph} units={this.state.units} colorStopStart={card.color} />
-              <TemperatureCard {...this.props.card} handleMetric={this.handleMetric} handleImperial={this.handleImperial} units={this.state.units} />
-              <button
-                className="del"
-                onClick={(e) => {
-                  this.props.delCard(card.id)
-                }}
-              >
-                &#10006;
-              </button>
-            </div>
-          </div>
-        )
-        }
-
-      </Draggable>
+      <div className="card-wrap" key={card.id}
+        style={{ backgroundColor: card.main_temp > 0 ? "#fff1fe" : "#f1f2ff" }}
+      >
+        <HeaderCard {...this.props.card} />
+        <CurveWeather width={300} height={50} id={card.id} time={card.graph} units={this.state.units} colorStopStart={card.color} />
+        <TemperatureCard {...this.props.card} handleMetric={this.handleMetric} handleImperial={this.handleImperial} units={this.state.units} />
+        <button
+          className="del"
+          onClick={(e) => {
+            this.props.delCard(card.id)
+          }}
+        >
+          &#10006;
+        </button>
+      </div>
     )
   }
 }
